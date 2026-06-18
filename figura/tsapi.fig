@@ -281,7 +281,7 @@ enum WallpaperFit {
   Contain, 
   Stretch,
   Center,
-  Title
+  Tile
 };
 
 struct SetWallpaperOptions {
