@@ -89,6 +89,8 @@ export type ConfirmAlertActionStyle = "Default" | "Destructive" | "Cancel";
 
 export type NotificationUrgency = "Low" | "Normal" | "High";
 
+export type WallpaperFit = "Cover" | "Contain" | "Stretch" | "Center" | "Title";
+
 export type Application = {
 	id: string;
 	name: string;
@@ -242,6 +244,12 @@ export type SetTokensRequest = {
 
 export type TokenSetResponse = {
 	set?: TokenSet;
+};
+
+export type SetWallpaperOptions = {
+	fit?: WallpaperFit;
+	persist?: boolean;
+	screen?: string;
 };
 
 class ApplicationService {
@@ -480,6 +488,14 @@ class OAuthService {
 	}
 }
 
+class MiscService {
+	constructor(private readonly transport: RpcTransport) {}
+
+	setWallpaper(path: string, options: SetWallpaperOptions): Promise<void> {
+		return this.transport.request("Misc/setWallpaper", { path, options });
+	}
+}
+
 class EventCoreService {
 	constructor(private readonly transport: RpcTransport) {}
 
@@ -502,6 +518,7 @@ export class Client {
 		this.FileSearch = new FileSearchService(this.transport);
 		this.Command = new CommandService(this.transport);
 		this.OAuth = new OAuthService(this.transport);
+		this.Misc = new MiscService(this.transport);
 		this.EventCore = new EventCoreService(this.transport);
 	}
 
@@ -516,5 +533,6 @@ export class Client {
 	FileSearch: FileSearchService;
 	Command: CommandService;
 	OAuth: OAuthService;
+	Misc: MiscService;
 	EventCore: EventCoreService;
 }
