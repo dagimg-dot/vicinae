@@ -612,9 +612,12 @@ if (APPLE)
 		src/services/global-shortcuts/macos-global-shortcut-backend.cpp
 		src/services/files-service/macos/spotlight-file-indexer.hpp
 		src/services/files-service/macos/spotlight-file-indexer.mm
+		src/services/wallpaper/macos/mac-wallpaper-backend.hpp
+		src/services/wallpaper/macos/mac-wallpaper-backend.mm
 	)
 	set_source_files_properties(
 		src/ui/image/mac-file-icon-loader.mm
+		src/services/wallpaper/macos/mac-wallpaper-backend.mm
 		src/services/app-service/macos/mac-app.mm
 		src/services/app-service/macos/mac-app-database.mm
 		src/services/app-runtime/macos/mac-app-runtime.mm
